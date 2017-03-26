@@ -1,0 +1,8 @@
+.selector- {
+	&a {
+		float: left;
+	}
+	&a, &b {
+		backgorund: orange;
+	}
+}

@@ -1,0 +1,6 @@
+.selector-a {
+  float: left; }
+.selector-a, .selector-b {
+  backgorund: orange; }
+
+/*# sourceMappingURL=selectors.css.map */
