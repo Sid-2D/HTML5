@@ -1,0 +1,10 @@
+.generic-container, .box-service {
+  padding: 10px;
+  border: 1px solid;
+  background: #ccc;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+
+.box-service {
+  padding: 25px; }
+
+/*# sourceMappingURL=extending.css.map */

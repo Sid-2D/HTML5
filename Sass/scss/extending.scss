@@ -1,0 +1,11 @@
+.generic-container {
+	padding: 10px;
+	border: 1px solid;
+	background: #ccc;
+	box-shadow: 1px 1px 1px rgba(black, .3);
+}
+
+.box-service {
+	@extend .generic-container;
+	padding: 25px;
+}

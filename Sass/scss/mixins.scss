@@ -1,13 +1,13 @@
 $brandBlue: #416e8e;
 $supportGray: #ccc;
 
-@mixin genericContainer {
-	padding: 10px;
-	border: $brandBlue 1px solid;
-	background: $supportGray;
+@mixin genericContainer ($padding, $bdColor, $bgColor) {
+	padding: $padding;
+	border: $bdColor 1px solid;
+	background: $bgColor;
 	box-shadow: 1px 1px 1px rgba(black, .3);
 }
 
 .selector-a {
-	@include genericContainer;
+	@include genericContainer(2%, $brandBlue, #ccc);
 }
