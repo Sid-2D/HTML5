@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Responsive Grid</title>
+		<style type="text/css">
+			* {
+			    box-sizing: border-box;
+			}
+			.row::after {
+			    content: "";
+			    clear: both;
+			    display: table;
+			}
+			[class*="col-"] {
+			    float: left;
+			    padding: 15px;
+			}
+			/* For mobile phones */
+			[class*="col-"] {
+			    width: 100%;
+			}
+		    /* For tablets: */
+			@media (min-width: 600px) {
+			    .col-m-1 {width: 8.33%;}
+			    .col-m-2 {width: 16.66%;}
+			    .col-m-3 {width: 25%;}
+			    .col-m-4 {width: 33.33%;}
+			    .col-m-5 {width: 41.66%;}
+			    .col-m-6 {width: 50%;}
+			    .col-m-7 {width: 58.33%;}
+			    .col-m-8 {width: 66.66%;}
+			    .col-m-9 {width: 75%;}
+			    .col-m-10 {width: 83.33%;}
+			    .col-m-11 {width: 91.66%;}
+			    .col-m-12 {width: 100%;}
+			}
+		    /* For desktop: */
+			@media (min-width: 768px) {
+			    .col-1 {width: 8.33%;}
+			    .col-2 {width: 16.66%;}
+			    .col-3 {width: 25%;}
+			    .col-4 {width: 33.33%;}
+			    .col-5 {width: 41.66%;}
+			    .col-6 {width: 50%;}
+			    .col-7 {width: 58.33%;}
+			    .col-8 {width: 66.66%;}
+			    .col-9 {width: 75%;}
+			    .col-10 {width: 83.33%;}
+			    .col-11 {width: 91.66%;}
+			    .col-12 {width: 100%;}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="row">
+			<div class="col-3 col-m-3">
+			  <ul>
+			    <li>Row 1 of Column 1 - This appears as a column for large and medium devices.</li>
+			    <li>Row 2 of Column 1</li>
+			    <li>Row 3 of Column 1</li>
+			    <li>Row 4 of Column 1</li>
+			  </ul>
+			</div>
+
+			<div class="col-6 col-m-9">
+			  <h1>Row 1 of Column 2 - This will appear as a column for medium and large devices.</h1>
+			  <p>Row 2 of Column 2 - For smaller devices this collapses into it's own row</p>
+			</div>
+
+			<div class="col-3 col-m-12">
+			  <div class="aside">
+			    <h2>Row 1 of Column 3 - This only appears as a column for large devices.</h2>
+			    <p>Row 2 of Column 3</p>
+			    <h2>Row 3 of Column 3</h2>
+			    <p>Row 4 of Column 3</p>
+			    <h2>Row 5 of Column 3</h2>
+			    <p>Row 6 of Column 3</p>
+			  </div>
+			</div>
+		</div>
+	</body>
+</html>
