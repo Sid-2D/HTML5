@@ -134,6 +134,65 @@ var comment = {
 	}
 };
 
+function ClockNoClass(props) {
+	return React.createElement(
+		"h3",
+		null,
+		"It is ",
+		props.date.toLocaleTimeString(),
+		"."
+	);
+}
+
+var Clock = function (_React$Component2) {
+	_inherits(Clock, _React$Component2);
+
+	function Clock(props) {
+		_classCallCheck(this, Clock);
+
+		var _this2 = _possibleConstructorReturn(this, (Clock.__proto__ || Object.getPrototypeOf(Clock)).call(this, props));
+
+		_this2.state = { date: new Date() };
+		return _this2;
+	}
+
+	_createClass(Clock, [{
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			var _this3 = this;
+
+			this.timerID = setInterval(function () {
+				return _this3.tick();
+			}, 1000);
+		}
+	}, {
+		key: "componentWillUnmount",
+		value: function componentWillUnmount() {
+			clearInterval(this.timerID);
+		}
+	}, {
+		key: "tick",
+		value: function tick() {
+			this.setState({
+				date: new Date()
+			});
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			return React.createElement(
+				"h3",
+				null,
+				"It is ",
+				this.state.date.toLocaleTimeString(),
+				"."
+			);
+		}
+	}]);
+
+	return Clock;
+}(React.Component);
+
 ReactDOM.render(React.createElement(
 	"div",
 	null,
@@ -142,5 +201,6 @@ ReactDOM.render(React.createElement(
 		text: comment.text,
 		author: comment.author }),
 	React.createElement(App, null),
-	React.createElement(Welcome1, { name: "Sid" })
+	React.createElement(Welcome1, { name: "Sid" }),
+	React.createElement(Clock, { date: new Date() })
 ), document.getElementById('root'));
