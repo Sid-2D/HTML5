@@ -21,10 +21,12 @@
     </form>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <!--
     <script>
-      $(function () {
+    $(function () {
         var socket = io();
         $('form').submit(function(){
+          console.log('here');
           socket.emit('chat message', $('#m').val());
           $('#m').val('');
           return false;
@@ -33,25 +35,22 @@
           $('#messages').append($('<li>').text(msg));
         });
       });
-    </script> 
-    <!-- <script type="text/javascript">
-    	(function () {
-	    	var socket = io();
-	    	var form = document.getElementsByTagName('form')[0];
-	    	var input = document.getElementById('m');
-	    	var messages = document.getElementById('messages');
-	    	form.addEventListener('submit', function() {
-	    	  console.log('here');
-	          socket.emit('chat message', input.value);
-	          input.value = '';
-	          return false;
-	        });
-	        socket.on('chat message', msg => {
-	          var li = document.createElement('li');
-	          li.innerHTML = msg;
-	          messages.appendChild(li);
-	        });
-	    })();
     </script> -->
+    <script type="text/javascript">
+    	var socket = io();
+    	var form = document.getElementsByTagName('form')[0];
+    	var input = document.getElementById('m');
+    	var messages = document.getElementById('messages');
+    	form.addEventListener('submit', event => {
+    	  event.preventDefault();
+        socket.emit('chat message', input.value);
+        input.value = '';
+      });
+      socket.on('chat message', msg => {
+        var li = document.createElement('li');
+        li.innerHTML = msg;
+        messages.appendChild(li);
+      });
+    </script>
 </body>
 </html>
