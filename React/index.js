@@ -193,6 +193,106 @@ var Clock = function (_React$Component2) {
 	return Clock;
 }(React.Component);
 
+var Toggle = function (_React$Component3) {
+	_inherits(Toggle, _React$Component3);
+
+	function Toggle(props) {
+		_classCallCheck(this, Toggle);
+
+		var _this4 = _possibleConstructorReturn(this, (Toggle.__proto__ || Object.getPrototypeOf(Toggle)).call(this, props));
+
+		_this4.state = { isToggleOn: true };
+		_this4.handleClick = _this4.handleClick.bind(_this4);
+		return _this4;
+	}
+
+	_createClass(Toggle, [{
+		key: "handleClick",
+		value: function handleClick() {
+			this.setState(function (prevState) {
+				return {
+					isToggleOn: !prevState.isToggleOn
+				};
+			});
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			return React.createElement(
+				"button",
+				{ onClick: this.handleClick },
+				this.state.isToggleOn ? 'ON' : 'OFF'
+			);
+		}
+	}]);
+
+	return Toggle;
+}(React.Component);
+
+var LoggingButton = function (_React$Component4) {
+	_inherits(LoggingButton, _React$Component4);
+
+	function LoggingButton() {
+		_classCallCheck(this, LoggingButton);
+
+		return _possibleConstructorReturn(this, (LoggingButton.__proto__ || Object.getPrototypeOf(LoggingButton)).apply(this, arguments));
+	}
+
+	_createClass(LoggingButton, [{
+		key: "handleClick",
+
+		// To avoid bind as in above, note onClick attribute
+		value: function handleClick() {
+			console.log('This is:', this);
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			var _this6 = this;
+
+			return React.createElement(
+				"button",
+				{ onClick: function onClick(e) {
+						return _this6.handleClick(e);
+					} },
+				"Click me"
+			);
+		}
+	}]);
+
+	return LoggingButton;
+}(React.Component);
+
+var Greeting = function (_React$Component5) {
+	_inherits(Greeting, _React$Component5);
+
+	function Greeting() {
+		_classCallCheck(this, Greeting);
+
+		return _possibleConstructorReturn(this, (Greeting.__proto__ || Object.getPrototypeOf(Greeting)).apply(this, arguments));
+	}
+
+	_createClass(Greeting, [{
+		key: "render",
+		value: function render() {
+			if (this.props.isLoggedIn) {
+				return React.createElement(
+					"h1",
+					null,
+					"Welcome back!"
+				);
+			}
+			return React.createElement(
+				"h1",
+				null,
+				"Please signup."
+			);
+		}
+	}]);
+
+	return Greeting;
+}(React.Component);
+
 ReactDOM.render(React.createElement(
 	"div",
 	null,
@@ -202,5 +302,9 @@ ReactDOM.render(React.createElement(
 		author: comment.author }),
 	React.createElement(App, null),
 	React.createElement(Welcome1, { name: "Sid" }),
-	React.createElement(Clock, { date: new Date() })
+	React.createElement(Clock, { date: new Date() }),
+	React.createElement(Toggle, null),
+	React.createElement(LoggingButton, null),
+	React.createElement(Greeting, { isLoggedIn: false }),
+	React.createElement(Greeting, { isLoggedIn: true })
 ), document.getElementById('root'));

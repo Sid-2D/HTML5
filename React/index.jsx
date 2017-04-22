@@ -118,6 +118,52 @@ class Clock extends React.Component {
 	}
 }
 
+class Toggle extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = { isToggleOn: true };
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	handleClick() {
+		this.setState(prevState => ({
+			isToggleOn: !prevState.isToggleOn
+		}));
+	}
+
+	render() {
+		return (
+			<button onClick={this.handleClick}>
+				{this.state.isToggleOn ? 'ON' : 'OFF'}
+			</button>
+		);
+	}
+}
+
+class LoggingButton extends React.Component {
+	// To avoid bind as in above, note onClick attribute
+	handleClick() {
+		console.log('This is:', this);
+	}
+
+	render() {
+		return (
+			<button onClick={(e) => this.handleClick(e)}>
+				Click me
+			</button>
+		);
+	}
+}
+
+class Greeting extends React.Component {
+	render() {
+		if (this.props.isLoggedIn) {
+			return <h1>Welcome back!</h1>;
+		}
+		return <h1>Please signup.</h1>;
+	}
+}
+
 ReactDOM.render(
 	<div>
 		<CommentBroken
@@ -127,6 +173,10 @@ ReactDOM.render(
 		<App />
 		<Welcome1 name="Sid" />
 		<Clock date={new Date()} />
+		<Toggle />
+		<LoggingButton />
+		<Greeting isLoggedIn={false} />
+		<Greeting isLoggedIn={true} />
 	</div>,
 	document.getElementById('root')
 );
