@@ -276,11 +276,7 @@ var Greeting = function (_React$Component5) {
 		key: "render",
 		value: function render() {
 			if (this.props.isLoggedIn) {
-				return React.createElement(
-					"h1",
-					null,
-					"Welcome back!"
-				);
+				return null;
 			}
 			return React.createElement(
 				"h1",
@@ -292,6 +288,136 @@ var Greeting = function (_React$Component5) {
 
 	return Greeting;
 }(React.Component);
+
+var LoginButton = function (_React$Component6) {
+	_inherits(LoginButton, _React$Component6);
+
+	function LoginButton() {
+		_classCallCheck(this, LoginButton);
+
+		return _possibleConstructorReturn(this, (LoginButton.__proto__ || Object.getPrototypeOf(LoginButton)).apply(this, arguments));
+	}
+
+	_createClass(LoginButton, [{
+		key: "render",
+		value: function render() {
+			return React.createElement(
+				"button",
+				{ onClick: this.props.onClick },
+				"Login"
+			);
+		}
+	}]);
+
+	return LoginButton;
+}(React.Component);
+
+var LogoutButton = function (_React$Component7) {
+	_inherits(LogoutButton, _React$Component7);
+
+	function LogoutButton() {
+		_classCallCheck(this, LogoutButton);
+
+		return _possibleConstructorReturn(this, (LogoutButton.__proto__ || Object.getPrototypeOf(LogoutButton)).apply(this, arguments));
+	}
+
+	_createClass(LogoutButton, [{
+		key: "render",
+		value: function render() {
+			return React.createElement(
+				"button",
+				{ onClick: this.props.onClick },
+				"Logout"
+			);
+		}
+	}]);
+
+	return LogoutButton;
+}(React.Component);
+
+var LoginControl = function (_React$Component8) {
+	_inherits(LoginControl, _React$Component8);
+
+	function LoginControl(props) {
+		_classCallCheck(this, LoginControl);
+
+		var _this10 = _possibleConstructorReturn(this, (LoginControl.__proto__ || Object.getPrototypeOf(LoginControl)).call(this, props));
+
+		_this10.state = { isLoggedIn: false };
+		_this10.handleLoginClick = _this10.handleLoginClick.bind(_this10);
+		_this10.handleLogoutClick = _this10.handleLogoutClick.bind(_this10);
+		return _this10;
+	}
+
+	_createClass(LoginControl, [{
+		key: "handleLoginClick",
+		value: function handleLoginClick() {
+			this.setState({ isLoggedIn: true });
+		}
+	}, {
+		key: "handleLogoutClick",
+		value: function handleLogoutClick() {
+			this.setState({ isLoggedIn: false });
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			var isLoggedIn = this.state.isLoggedIn;
+			var button = null;
+			if (isLoggedIn) {
+				button = React.createElement(LogoutButton, { onClick: this.handleLogoutClick });
+			} else {
+				button = React.createElement(LoginButton, { onClick: this.handleLoginClick });
+			}
+			return React.createElement(
+				"div",
+				null,
+				React.createElement(Greeting, { isLoggedIn: isLoggedIn }),
+				button
+			);
+		}
+	}]);
+
+	return LoginControl;
+}(React.Component);
+
+var Mailbox = function (_React$Component9) {
+	_inherits(Mailbox, _React$Component9);
+
+	function Mailbox() {
+		_classCallCheck(this, Mailbox);
+
+		return _possibleConstructorReturn(this, (Mailbox.__proto__ || Object.getPrototypeOf(Mailbox)).apply(this, arguments));
+	}
+
+	_createClass(Mailbox, [{
+		key: "render",
+		value: function render() {
+			var unreadMessages = this.props.unreadMessages;
+			return React.createElement(
+				"div",
+				null,
+				React.createElement(
+					"h1",
+					null,
+					"Hello!"
+				),
+				unreadMessages.length > 0 && React.createElement(
+					"h2",
+					null,
+					"You have ",
+					unreadMessages.length,
+					" unread messages."
+				)
+			);
+		}
+	}]);
+
+	return Mailbox;
+}(React.Component);
+
+var messages = ['React', 'Sid', 'Sid-2D'];
+var noMessages = [];
 
 ReactDOM.render(React.createElement(
 	"div",
@@ -306,5 +432,8 @@ ReactDOM.render(React.createElement(
 	React.createElement(Toggle, null),
 	React.createElement(LoggingButton, null),
 	React.createElement(Greeting, { isLoggedIn: false }),
-	React.createElement(Greeting, { isLoggedIn: true })
+	React.createElement(Greeting, { isLoggedIn: true }),
+	React.createElement(LoginControl, null),
+	React.createElement(Mailbox, { unreadMessages: messages }),
+	React.createElement(Mailbox, { unreadMessages: noMessages })
 ), document.getElementById('root'));

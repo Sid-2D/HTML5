@@ -158,11 +158,83 @@ class LoggingButton extends React.Component {
 class Greeting extends React.Component {
 	render() {
 		if (this.props.isLoggedIn) {
-			return <h1>Welcome back!</h1>;
+			return null;
 		}
 		return <h1>Please signup.</h1>;
 	}
 }
+
+class LoginButton extends React.Component {
+	render() {
+		return (
+			<button onClick={this.props.onClick}>
+				Login
+			</button>
+		);
+	}
+}
+
+class LogoutButton extends React.Component {
+	render() {
+		return (
+			<button onClick={this.props.onClick}>
+				Logout
+			</button>
+		);
+	}
+}
+
+class LoginControl extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {isLoggedIn: false};
+		this.handleLoginClick = this.handleLoginClick.bind(this);
+		this.handleLogoutClick = this.handleLogoutClick.bind(this);
+	}
+
+	handleLoginClick() {
+		this.setState({isLoggedIn: true});
+	}
+
+	handleLogoutClick() {
+		this.setState({isLoggedIn: false});
+	}
+
+	render() {
+		const isLoggedIn = this.state.isLoggedIn;
+		let button = null;
+		if (isLoggedIn) {
+			button = <LogoutButton onClick={this.handleLogoutClick} />;
+		} else {
+			button = <LoginButton onClick={this.handleLoginClick} />;
+		}
+		return (
+			<div>
+				<Greeting isLoggedIn={isLoggedIn} />
+				{button}
+			</div>
+		);
+	}
+}
+
+class Mailbox extends React.Component {
+	render() {
+		const unreadMessages = this.props.unreadMessages;
+		return (
+			<div>
+				<h1>Hello!</h1>
+				{unreadMessages.length > 0 &&
+					<h2>
+						You have {unreadMessages.length} unread messages.
+					</h2>
+				}
+			</div>
+		);
+	}
+}
+
+const messages = ['React', 'Sid', 'Sid-2D'];
+const noMessages = [];
 
 ReactDOM.render(
 	<div>
@@ -177,6 +249,9 @@ ReactDOM.render(
 		<LoggingButton />
 		<Greeting isLoggedIn={false} />
 		<Greeting isLoggedIn={true} />
+		<LoginControl />
+		<Mailbox unreadMessages={messages} />
+		<Mailbox unreadMessages={noMessages} />
 	</div>,
 	document.getElementById('root')
 );
