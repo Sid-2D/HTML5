@@ -233,6 +233,21 @@ class Mailbox extends React.Component {
 	}
 }
 
+class NumberList extends React.Component {
+	render() {
+		const numbers = this.props.numbers;
+		return ( 
+			<ul>
+				{numbers.map(number => 
+					<li key={number.toString()}>
+						{number}
+					</li>
+				)}
+			</ul>
+		);
+	}
+}
+
 const messages = ['React', 'Sid', 'Sid-2D'];
 const noMessages = [];
 
@@ -252,6 +267,7 @@ ReactDOM.render(
 		<LoginControl />
 		<Mailbox unreadMessages={messages} />
 		<Mailbox unreadMessages={noMessages} />
+		<NumberList numbers={[1, 2, 3, 4, 5]} />
 	</div>,
 	document.getElementById('root')
 );

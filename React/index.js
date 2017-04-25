@@ -416,6 +416,36 @@ var Mailbox = function (_React$Component9) {
 	return Mailbox;
 }(React.Component);
 
+var NumberList = function (_React$Component10) {
+	_inherits(NumberList, _React$Component10);
+
+	function NumberList() {
+		_classCallCheck(this, NumberList);
+
+		return _possibleConstructorReturn(this, (NumberList.__proto__ || Object.getPrototypeOf(NumberList)).apply(this, arguments));
+	}
+
+	_createClass(NumberList, [{
+		key: "render",
+		value: function render() {
+			var numbers = this.props.numbers;
+			return React.createElement(
+				"ul",
+				null,
+				numbers.map(function (number) {
+					return React.createElement(
+						"li",
+						{ key: number.toString() },
+						number
+					);
+				})
+			);
+		}
+	}]);
+
+	return NumberList;
+}(React.Component);
+
 var messages = ['React', 'Sid', 'Sid-2D'];
 var noMessages = [];
 
@@ -435,5 +465,6 @@ ReactDOM.render(React.createElement(
 	React.createElement(Greeting, { isLoggedIn: true }),
 	React.createElement(LoginControl, null),
 	React.createElement(Mailbox, { unreadMessages: messages }),
-	React.createElement(Mailbox, { unreadMessages: noMessages })
+	React.createElement(Mailbox, { unreadMessages: noMessages }),
+	React.createElement(NumberList, { numbers: [1, 2, 3, 4, 5] })
 ), document.getElementById('root'));
