@@ -251,6 +251,36 @@ class NumberList extends React.Component {
 const messages = ['React', 'Sid', 'Sid-2D'];
 const noMessages = [];
 
+class NameForm extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {value: ''};
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleChange(event) {
+		this.setState({value: event.target.value});
+	}
+
+	handleSubmit(event) {
+		alert('A name was submitted: ' + this.state.value);
+		event.preventDefault();
+	}
+
+	render() {
+		return (
+			<form onSubmit={this.handleSubmit}>
+				<label>
+					Name:
+					<input type="text" value={this.state.value} onChange={this.handleChange} />
+				</label>
+				<input type="submit" value="Submit" />
+			</form>
+		);
+	}
+}
+
 ReactDOM.render(
 	<div>
 		<CommentBroken
@@ -268,6 +298,7 @@ ReactDOM.render(
 		<Mailbox unreadMessages={messages} />
 		<Mailbox unreadMessages={noMessages} />
 		<NumberList numbers={[1, 2, 3, 4, 5]} />
+		<NameForm />
 	</div>,
 	document.getElementById('root')
 );

@@ -449,6 +449,51 @@ var NumberList = function (_React$Component10) {
 var messages = ['React', 'Sid', 'Sid-2D'];
 var noMessages = [];
 
+var NameForm = function (_React$Component11) {
+	_inherits(NameForm, _React$Component11);
+
+	function NameForm(props) {
+		_classCallCheck(this, NameForm);
+
+		var _this13 = _possibleConstructorReturn(this, (NameForm.__proto__ || Object.getPrototypeOf(NameForm)).call(this, props));
+
+		_this13.state = { value: '' };
+		_this13.handleChange = _this13.handleChange.bind(_this13);
+		_this13.handleSubmit = _this13.handleSubmit.bind(_this13);
+		return _this13;
+	}
+
+	_createClass(NameForm, [{
+		key: "handleChange",
+		value: function handleChange(event) {
+			this.setState({ value: event.target.value });
+		}
+	}, {
+		key: "handleSubmit",
+		value: function handleSubmit(event) {
+			alert('A name was submitted: ' + this.state.value);
+			event.preventDefault();
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			return React.createElement(
+				"form",
+				{ onSubmit: this.handleSubmit },
+				React.createElement(
+					"label",
+					null,
+					"Name:",
+					React.createElement("input", { type: "text", value: this.state.value, onChange: this.handleChange })
+				),
+				React.createElement("input", { type: "submit", value: "Submit" })
+			);
+		}
+	}]);
+
+	return NameForm;
+}(React.Component);
+
 ReactDOM.render(React.createElement(
 	"div",
 	null,
@@ -466,5 +511,6 @@ ReactDOM.render(React.createElement(
 	React.createElement(LoginControl, null),
 	React.createElement(Mailbox, { unreadMessages: messages }),
 	React.createElement(Mailbox, { unreadMessages: noMessages }),
-	React.createElement(NumberList, { numbers: [1, 2, 3, 4, 5] })
+	React.createElement(NumberList, { numbers: [1, 2, 3, 4, 5] }),
+	React.createElement(NameForm, null)
 ), document.getElementById('root'));
