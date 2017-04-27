@@ -494,6 +494,121 @@ var NameForm = function (_React$Component11) {
 	return NameForm;
 }(React.Component);
 
+var EssayForm = function (_React$Component12) {
+	_inherits(EssayForm, _React$Component12);
+
+	function EssayForm(props) {
+		_classCallCheck(this, EssayForm);
+
+		var _this14 = _possibleConstructorReturn(this, (EssayForm.__proto__ || Object.getPrototypeOf(EssayForm)).call(this, props));
+
+		_this14.state = {
+			value: 'Please write something.'
+		};
+		_this14.handleChange = _this14.handleChange.bind(_this14);
+		_this14.handleSubmit = _this14.handleSubmit.bind(_this14);
+		return _this14;
+	}
+
+	_createClass(EssayForm, [{
+		key: "handleChange",
+		value: function handleChange(event) {
+			this.setState({ value: event.target.value });
+		}
+	}, {
+		key: "handleSubmit",
+		value: function handleSubmit(event) {
+			alert('An essay was submitted: ' + this.state.value);
+			event.preventDefault();
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			return React.createElement(
+				"form",
+				{ onSubmit: this.handleSubmit },
+				React.createElement(
+					"label",
+					null,
+					"Name:",
+					React.createElement("textarea", { value: this.state.value, onChange: this.handleChange })
+				),
+				React.createElement("input", { type: "submit", value: "Submit" })
+			);
+		}
+	}]);
+
+	return EssayForm;
+}(React.Component);
+
+var FlavorForm = function (_React$Component13) {
+	_inherits(FlavorForm, _React$Component13);
+
+	function FlavorForm(props) {
+		_classCallCheck(this, FlavorForm);
+
+		var _this15 = _possibleConstructorReturn(this, (FlavorForm.__proto__ || Object.getPrototypeOf(FlavorForm)).call(this, props));
+
+		_this15.state = { value: 'coconut' };
+		_this15.handleChange = _this15.handleChange.bind(_this15);
+		_this15.handleSubmit = _this15.handleSubmit.bind(_this15);
+		return _this15;
+	}
+
+	_createClass(FlavorForm, [{
+		key: "handleChange",
+		value: function handleChange(event) {
+			this.setState({ value: event.target.value });
+		}
+	}, {
+		key: "handleSubmit",
+		value: function handleSubmit(event) {
+			alert('Your favourite flavour is: ' + this.state.value);
+			event.preventDefault();
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			return React.createElement(
+				"form",
+				{ onSubmit: this.handleSubmit },
+				React.createElement(
+					"label",
+					null,
+					"Pick your flavour:",
+					React.createElement(
+						"select",
+						{ value: this.state.value, onChange: this.handleChange },
+						React.createElement(
+							"option",
+							{ value: "grape" },
+							"Grape"
+						),
+						React.createElement(
+							"option",
+							{ value: "lime" },
+							"Lime"
+						),
+						React.createElement(
+							"option",
+							{ value: "coconut" },
+							"Coconut"
+						),
+						React.createElement(
+							"option",
+							{ value: "mango" },
+							"Mango"
+						)
+					)
+				),
+				React.createElement("input", { type: "submit", value: "Submit" })
+			);
+		}
+	}]);
+
+	return FlavorForm;
+}(React.Component);
+
 ReactDOM.render(React.createElement(
 	"div",
 	null,
@@ -512,5 +627,7 @@ ReactDOM.render(React.createElement(
 	React.createElement(Mailbox, { unreadMessages: messages }),
 	React.createElement(Mailbox, { unreadMessages: noMessages }),
 	React.createElement(NumberList, { numbers: [1, 2, 3, 4, 5] }),
-	React.createElement(NameForm, null)
+	React.createElement(NameForm, null),
+	React.createElement(EssayForm, null),
+	React.createElement(FlavorForm, null)
 ), document.getElementById('root'));

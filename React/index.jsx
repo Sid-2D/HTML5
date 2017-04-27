@@ -281,6 +281,73 @@ class NameForm extends React.Component {
 	}
 }
 
+class EssayForm extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			value: 'Please write something.'
+		};
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleChange(event) {
+		this.setState({value: event.target.value});
+	}
+
+	handleSubmit(event) {
+		alert('An essay was submitted: ' + this.state.value);
+		event.preventDefault();
+	}
+
+	render() {
+		return (
+			<form onSubmit={this.handleSubmit}>
+				<label>
+					Name:
+					<textarea value={this.state.value} onChange={this.handleChange} />
+				</label>
+				<input type='submit' value='Submit' />
+			</form>
+		);
+	}
+}
+
+class FlavorForm extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {value: 'coconut'};
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleChange(event) {
+		this.setState({value: event.target.value});
+	}
+
+	handleSubmit(event) {
+		alert('Your favourite flavour is: ' + this.state.value);
+		event.preventDefault();
+	}
+
+	render() {
+		return (
+			<form onSubmit={this.handleSubmit}>
+				<label>
+					Pick your flavour:
+					<select value={this.state.value} onChange={this.handleChange}>
+						<option value="grape">Grape</option>
+						<option value="lime">Lime</option>
+						<option value="coconut">Coconut</option>
+						<option value="mango">Mango</option>
+					</select>
+				</label>
+				<input type="submit" value="Submit" />
+			</form>
+		);
+	}
+}
+
 ReactDOM.render(
 	<div>
 		<CommentBroken
@@ -299,6 +366,8 @@ ReactDOM.render(
 		<Mailbox unreadMessages={noMessages} />
 		<NumberList numbers={[1, 2, 3, 4, 5]} />
 		<NameForm />
+		<EssayForm />
+		<FlavorForm />
 	</div>,
 	document.getElementById('root')
 );
