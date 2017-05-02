@@ -2,6 +2,8 @@
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -609,6 +611,64 @@ var FlavorForm = function (_React$Component13) {
 	return FlavorForm;
 }(React.Component);
 
+var Reservation = function (_React$Component14) {
+	_inherits(Reservation, _React$Component14);
+
+	function Reservation(props) {
+		_classCallCheck(this, Reservation);
+
+		var _this16 = _possibleConstructorReturn(this, (Reservation.__proto__ || Object.getPrototypeOf(Reservation)).call(this, props));
+
+		_this16.state = {
+			isGoing: true,
+			numberOfGuests: 2
+		};
+		_this16.handleInputChange = _this16.handleInputChange.bind(_this16);
+		return _this16;
+	}
+
+	_createClass(Reservation, [{
+		key: "handleInputChange",
+		value: function handleInputChange(event) {
+			var target = event.target;
+			var value = target.type === 'checkbox' ? target.checked : target.value;
+			var name = target.name;
+			this.setState(_defineProperty({}, name, value));
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			return React.createElement(
+				"form",
+				null,
+				React.createElement(
+					"label",
+					null,
+					"Is going:",
+					React.createElement("input", {
+						name: "isGoing",
+						type: "checkbox",
+						checked: this.state.isGoing,
+						onChange: this.handleInputChange })
+				),
+				React.createElement("br", null),
+				React.createElement(
+					"label",
+					null,
+					"Number of guests:",
+					React.createElement("input", {
+						name: "numberOfGuests",
+						type: "number",
+						value: this.state.numberOfGuests,
+						onChange: this.handleInputChange })
+				)
+			);
+		}
+	}]);
+
+	return Reservation;
+}(React.Component);
+
 ReactDOM.render(React.createElement(
 	"div",
 	null,
@@ -629,5 +689,6 @@ ReactDOM.render(React.createElement(
 	React.createElement(NumberList, { numbers: [1, 2, 3, 4, 5] }),
 	React.createElement(NameForm, null),
 	React.createElement(EssayForm, null),
-	React.createElement(FlavorForm, null)
+	React.createElement(FlavorForm, null),
+	React.createElement(Reservation, null)
 ), document.getElementById('root'));
