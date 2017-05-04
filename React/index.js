@@ -669,6 +669,136 @@ var Reservation = function (_React$Component14) {
 	return Reservation;
 }(React.Component);
 
+var scaleNames = {
+	c: 'Celsius',
+	f: 'Fahrenheit'
+};
+
+var TemperatureInput = function (_React$Component15) {
+	_inherits(TemperatureInput, _React$Component15);
+
+	function TemperatureInput(props) {
+		_classCallCheck(this, TemperatureInput);
+
+		var _this17 = _possibleConstructorReturn(this, (TemperatureInput.__proto__ || Object.getPrototypeOf(TemperatureInput)).call(this, props));
+
+		_this17.handleChange = _this17.handleChange.bind(_this17);
+		return _this17;
+	}
+
+	_createClass(TemperatureInput, [{
+		key: "handleChange",
+		value: function handleChange(e) {
+			this.props.onTemperatureChange(e.target.value);
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			var temperature = this.props.temperature;
+			var scale = this.props.scale;
+			return React.createElement(
+				"fieldset",
+				null,
+				React.createElement(
+					"legend",
+					null,
+					"Enter temperature in ",
+					scaleNames[scale],
+					":"
+				),
+				React.createElement("input", { value: temperature,
+					onChange: this.handleChange })
+			);
+		}
+	}]);
+
+	return TemperatureInput;
+}(React.Component);
+
+function BoilingVerdict(props) {
+	if (props.celsius >= 100) {
+		return React.createElement(
+			"p",
+			null,
+			"The water would boil."
+		);
+	}
+	return React.createElement(
+		"p",
+		null,
+		"The water would not boil."
+	);
+}
+
+function tryConvert(temperature, convert) {
+	var input = parseFloat(temperature);
+	if (Number.isNaN(input)) {
+		return '';
+	}
+	var output = convert(input);
+	var rounded = Math.round(output * 1000) / 1000;
+	return rounded.toString();
+}
+
+function toCelsius(fahrenheit) {
+	return (fahrenheit - 32) * 5 / 9;
+}
+
+function toFahrenheit(celsius) {
+	return celsius * 9 / 5 + 32;
+}
+
+var Calculator = function (_React$Component16) {
+	_inherits(Calculator, _React$Component16);
+
+	function Calculator(props) {
+		_classCallCheck(this, Calculator);
+
+		var _this18 = _possibleConstructorReturn(this, (Calculator.__proto__ || Object.getPrototypeOf(Calculator)).call(this, props));
+
+		_this18.handleCelsiusChange = _this18.handleCelsiusChange.bind(_this18);
+		_this18.handleFahrenheitChange = _this18.handleFahrenheitChange.bind(_this18);
+		_this18.state = { temperature: '', scale: 'c' };
+		return _this18;
+	}
+
+	_createClass(Calculator, [{
+		key: "handleCelsiusChange",
+		value: function handleCelsiusChange(temperature) {
+			this.setState({ scale: 'c', temperature: temperature });
+		}
+	}, {
+		key: "handleFahrenheitChange",
+		value: function handleFahrenheitChange(temperature) {
+			this.setState({ scale: 'f', temperature: temperature });
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			var scale = this.state.scale;
+			var temperature = this.state.temperature;
+			var celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
+			var fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+			return React.createElement(
+				"div",
+				null,
+				React.createElement(TemperatureInput, {
+					scale: "c",
+					temperature: celsius,
+					onTemperatureChange: this.handleCelsiusChange }),
+				React.createElement(TemperatureInput, {
+					scale: "f",
+					temperature: fahrenheit,
+					onTemperatureChange: this.handleFahrenheitChange }),
+				React.createElement(BoilingVerdict, {
+					celsius: parseFloat(celsius) })
+			);
+		}
+	}]);
+
+	return Calculator;
+}(React.Component);
+
 ReactDOM.render(React.createElement(
 	"div",
 	null,
@@ -690,5 +820,6 @@ ReactDOM.render(React.createElement(
 	React.createElement(NameForm, null),
 	React.createElement(EssayForm, null),
 	React.createElement(FlavorForm, null),
-	React.createElement(Reservation, null)
+	React.createElement(Reservation, null),
+	React.createElement(Calculator, null)
 ), document.getElementById('root'));
