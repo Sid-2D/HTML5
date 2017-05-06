@@ -799,6 +799,31 @@ var Calculator = function (_React$Component16) {
 	return Calculator;
 }(React.Component);
 
+function FancyBorder(props) {
+	return React.createElement(
+		"div",
+		{ className: 'FancyBorder FancyBorder-' + props.color },
+		props.children
+	);
+}
+
+function WelcomeDialog() {
+	return React.createElement(
+		FancyBorder,
+		{ color: "blue" },
+		React.createElement(
+			"h1",
+			{ className: "Dialog-title" },
+			"Welcome"
+		),
+		React.createElement(
+			"p",
+			{ className: "Dialog-message" },
+			"Thank you for visiting!"
+		)
+	);
+}
+
 ReactDOM.render(React.createElement(
 	"div",
 	null,
@@ -821,5 +846,6 @@ ReactDOM.render(React.createElement(
 	React.createElement(EssayForm, null),
 	React.createElement(FlavorForm, null),
 	React.createElement(Reservation, null),
-	React.createElement(Calculator, null)
+	React.createElement(Calculator, null),
+	React.createElement(WelcomeDialog, null)
 ), document.getElementById('root'));
