@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form validation</title>
+	<script type="text/javascript">
+		function validateRequired(email) {
+			var atPos = email.value.lastIndexOf("@");
+			var dotPos = email.value.lastIndexOf(".");
+			if (atPos < 1 || dotPos < atPos + 2 || dotPos + 2 > email.value.length) {
+				alert('Please fill correct email.');
+				return false;
+			}
+			return true;
+		}
+
+		function validateForm(thisForm) {
+			if (validateRequired(thisForm.email) == false) {
+				return false;
+			}
+			return true;
+		}
+	</script>
+</head>
+<body>
+<form onsubmit="return validateForm(this)">
+	Email: <input type="text" name="email" size="30" /><br>
+	<input type="submit" value="Submit">
+</form>
+</body>
+</html>
