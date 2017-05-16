@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		function loadFileAsText() {
+			var fileToLoad = document.getElementById('fileToLoad').files[0];
+			var fileReader = new FileReader();
+			fileReader.onload = fileLoadedEvent => {
+				var text = fileLoadedEvent.target.result;
+				console.log(text);
+			};
+			fileReader.readAsText(fileToLoad, 'UTF-8');
+		}
+	</script>
+</head>
+<body>
+	<form>
+		Upload a text file:
+		<input type="file" id="fileToLoad"><br>
+		<button onclick="loadFileAsText()">Process</button>
+	</form>
+</body>
+</html>
