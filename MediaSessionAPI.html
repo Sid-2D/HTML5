@@ -36,6 +36,14 @@
 		} else {
 			document.getElementById('display').innerHTML = 'mediaSession not available, try on a mobile device'
 		}
+
+		function change(name) {
+			navigator.mediaSession.metadata = new MediaMetadata({
+				title: name
+			})
+		}
 	</script>
+	<button onclick="change('Kangaroo Court')">Kangaroo Court</button><br>
+	<button onclick="change('You Were Right')">You Were Right</button>
 </body>
 </html>
