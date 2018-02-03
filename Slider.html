@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slider</title>
+	<link rel="stylesheet" type="text/css" href="nouislider.min.css">
+	<script type="text/javascript" src="nouislider.min.js"></script>
+</head>
+<body>
+	<div id="display"></div>
+	<div id="slider-range-value"></div>
+	<script type="text/javascript">
+		var rangeSlider = document.getElementById('display');
+		noUiSlider.create(rangeSlider, {
+			start: [ 4000 ],
+			range: {
+				'min': [  2000 ],
+				'max': [ 10000 ]
+			}
+		});
+		var rangeSliderValueElement = document.getElementById('slider-range-value');
+
+		rangeSlider.noUiSlider.on('update', (values, handle) => {
+			rangeSliderValueElement.innerHTML = values[handle];
+		});
+	</script>
+</body>
+</html>
