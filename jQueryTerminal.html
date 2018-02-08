@@ -2,9 +2,38 @@
 <html>
 <head>
 	<title>Terminal</title>
+	<style type="text/css">
+		body {
+			padding: 0;
+			margin: 0;
+		}
+
+		#terminal {
+			background-color: black;
+			color: #55ff55;
+			font-family: monospace;
+			font-size: 20px;
+		}
+
+		input {
+			background: #000;
+			border: 0;
+			color: #5f5;
+			font-size: 20px;
+			margin: 0;
+		}
+
+		textarea:focus, input:focus{
+		    outline: none;
+		}
+	</style>
 </head>
 <body>
-	<div id="terminal"></div>
+	<div class="terminal" id="terminal" style="height: 300px">
+		~$ <input type="text" name="" placeholder="Hello" /><br>
+		~$ <input type="text" name="" placeholder="ls" disabled="true" /><br>
+		~$ <input type="text" name="" />
+	</div>
 	<script
 		src="http://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -12,28 +41,8 @@
 	</script>
 	<script type="text/javascript" src="jquery.terminal-1.11.4.min.js"></script>
 	<script type="text/javascript">
-		jQuery(function($, undefined) {
-		    $('#terminal').terminal(function(command) {
-		        if (command !== '') {
-		            try {
-		                var result = window.eval(command)
-		                if (result !== undefined) {
-		                	var echo = this.echo
-		                	setTimeout(() => echo(new String(result)), 1000)
-		                }
-		            } catch(e) {
-		                this.error(new String(e))
-		            }
-		        } else {
-		           this.echo('')
-		        }
-		    }, {
-		        greetings: 'Javascript Interpreter',
-		        name: 'js_demo',
-		        height: 200,
-		        prompt: 'js> '
-		    })
-		})
+		$('input:last-child').focus()
+		
 	</script>
 </body>
 </html>
