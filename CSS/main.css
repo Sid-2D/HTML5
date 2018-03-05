@@ -1,0 +1,76 @@
+.flex-container {
+	background-color: #f4f7f8;
+	resize: horizontal;
+	overflow: hidden;
+	display: flex;
+	margin: 1em;
+}
+
+form {
+	flex: auto;
+}
+
+.item {
+	margin: 1em;
+	padding: 0.5em;
+	width: 100px;
+	min-width: 0;
+	background-color: #1B5385;
+	color: white;
+	font-family: monospace;
+	font-size: 13px;
+}
+
+.auto {
+	flex: auto;
+}
+
+.initial {
+	flex: initial;
+}
+
+.none {
+	flex: none;
+}
+
+.four {
+	flex: 4
+}
+
+.two {
+	flex: 2
+}
+
+.one {
+	flex: 1
+}
+
+.box {
+	display: inline-block;
+	height: 200px;
+	width: 200px;
+	margin-top: 100px;
+	background-color: #1B5385;
+	border: 2px solid;
+	color: white;
+	font-family: monospace; 
+}
+
+#two {
+	position: relative;
+	top: 20px;
+	left: 20px;
+	background: blue;
+}
+
+#three {
+	position: absolute;
+	top: 190px;
+	left: 50px;
+	background: red;
+}
+
+#one {
+	position: sticky;
+	/*top: 50px;*/
+}
