@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Local Storage</title>
+</head>
+<body>
+    <input type="text" id="inp" placeholder="Enter Text" />
+    <button onclick="save()">Save</button>
+    <div id="localText"></div>
+    <script type="text/javascript">
+        function getText() {
+           let text = localStorage.getItem('inpValue')
+           document.getElementById('localText').innerHTML = text
+        }
+
+        function save() {
+            let text = document.getElementById('inp').value
+            localStorage.setItem('inpValue', text)
+            getText()
+        }
+    </script>
+</body>
+</html>
