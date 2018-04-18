@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Worker</title>
+</head>
+<body>
+	<h1>Webworkers</h1>
+	<p>This is an introduction to webworkers. Both the buttons below perform
+	the same function but notice the UI lag in pressing the main thread button.</p>
+	<button onclick="mainThread()">Main thread</button>
+	<button onclick="workerFn()">Using worker</button>
+	<script type="text/javascript">
+		let worker = new Worker('worker.js')
+		function mainThread() {
+			let i = 0
+			while (i < 3000000000) { i++ }
+		}
+		function workerFn() {
+			worker.postMessage('From worker')
+		}
+	</script>
+</body>
+</html>
