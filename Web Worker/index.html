@@ -9,14 +9,19 @@
 	the same function but notice the UI lag in pressing the main thread button.</p>
 	<button onclick="mainThread()">Main thread</button>
 	<button onclick="workerFn()">Using worker</button>
+	<p id="status"></p>
 	<script type="text/javascript">
 		let worker = new Worker('worker.js')
 		function mainThread() {
 			let i = 0
+			document.getElementById('status').innerHTML = 'Main thread running...'
 			while (i < 3000000000) { i++ }
+			document.getElementById('status').innerHTML = 'Main thread done'
 		}
 		function workerFn() {
 			worker.postMessage('From worker')
+			document.getElementById('status').innerHTML = 'Worker running...'
+			worker.onmessage = msg => document.getElementById('status').innerHTML = 'Worker done'
 		}
 	</script>
 </body>
