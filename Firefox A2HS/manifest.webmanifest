@@ -1,0 +1,15 @@
+{
+  "background_color": "purple",
+  "description": "Shows fullscreen webpage.",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "fox.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "name": "Fullscreen Sample",
+  "short_name": "Firefox",
+  "start_url": "index.html"
+} 
