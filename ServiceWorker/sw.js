@@ -21,6 +21,7 @@ self.addEventListener('fetch', e => {
 		caches.match(e.request)
 			  .then(response => {
 			  		if (response) {
+			  			console.log('Sending cached response:', response)
 			  			return response
 			  		}
 
