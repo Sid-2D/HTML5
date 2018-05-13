@@ -13,3 +13,18 @@ if ('serviceWorker' in navigator) {
 						   		console.log('Registration unsuccessful', err)
 						   })
 }
+
+
+
+
+Notification.requestPermission(function(status) {
+    console.log('Notification permission status:', status)
+})
+
+window.showNotification = function() {
+	if (Notification.permission == 'granted') {
+	navigator.serviceWorker.getRegistration().then(function(reg) {
+			reg.showNotification('Hello world!')
+		})
+	}
+}
