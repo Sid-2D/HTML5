@@ -21,10 +21,20 @@ Notification.requestPermission(function(status) {
     console.log('Notification permission status:', status)
 })
 
+var options = {
+	body: 'This notification was generated from a push!',
+	icon: 'image.jpeg',
+	vibrate: [100, 50, 100],
+	data: {
+		dateOfArrival: Date.now(),
+		primaryKey: '2'
+	}
+};
+
 window.showNotification = function() {
 	if (Notification.permission == 'granted') {
 	navigator.serviceWorker.getRegistration().then(function(reg) {
-			reg.showNotification('Hello world!')
+			reg.showNotification('Hello world!', options)
 		})
 	}
 }
