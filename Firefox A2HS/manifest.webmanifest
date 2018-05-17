@@ -1,7 +1,7 @@
 {
   "background_color": "purple",
   "description": "Shows fullscreen webpage.",
-  "display": "fullscreen",
+  "display": "standalone",
   "icons": [
     {
       "src": "fox.png",
