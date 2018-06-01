@@ -6,13 +6,17 @@
 </head>
 <body>
     <audio id="player" preload="none" controls>
-        <source src="https://www.youtube.com/watch?v=hwfDX3lybu8" type="video/x-youtube">
+        <source src="audio.mp3">
     </audio>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.9/mediaelement-and-player.min.js"></script>
 	<script>
 		var player = new MediaElementPlayer('player', {
-			success: (mediaElement, originalNode, instance) => {}
+			success: (mediaElement, originalNode, instance) => {
+				console.log(mediaElement)
+				console.log(originalNode)
+				console.log(instance)
+			}
 		});
 	</script>
 </body>
