@@ -5,12 +5,27 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.9/mediaelementplayer.min.css" />
 </head>
 <body>
+	<input type="file">
+	<br><br>
     <audio id="player" preload="none" controls>
         <source src="audio.mp3">
     </audio>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.9/mediaelement-and-player.min.js"></script>
 	<script>
+		$('input').on('change', e => {
+			let target = e.currentTarget
+			let file = target.files[0]
+			
+			if (target.files && file) {
+				let reader = new FileReader()
+				reader.onload = e => {
+					console.log('here')
+					$('audio').attr('src', e.target.result)
+				}
+				reader.readAsDataURL(file)
+			}
+		})
 		var player = new MediaElementPlayer('player', {
 			success: (mediaElement, originalNode, instance) => {
 				console.log(mediaElement)
