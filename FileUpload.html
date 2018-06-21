@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>File Upload</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">        
+    <meta name="mobile-web-app-capable" content="yes">
 	<script type="text/javascript">
 		function loadFileAsText() {
 			var fileToLoad = document.getElementById('fileToLoad').files[0];
 			var fileReader = new FileReader();
 			fileReader.onload = fileLoadedEvent => {
+				fileLoadedEvent.preventDefault();
 				var text = fileLoadedEvent.target.result;
 				console.log(text);
 			};
@@ -15,10 +18,8 @@
 	</script>
 </head>
 <body>
-	<form>
-		Upload a text file:
-		<input type="file" id="fileToLoad"><br>
-		<button onclick="loadFileAsText()">Process</button>
-	</form>
+	Upload a text file:
+	<input type="file" id="fileToLoad"><br>
+	<button onclick="loadFileAsText()">Process</button>
 </body>
 </html>
