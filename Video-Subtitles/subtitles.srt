@@ -1,0 +1,11 @@
+1
+00:00:05,797 --> 00:00:06,878
+Hello!
+
+2
+00:00:07,049 --> 00:00:08,256
+<i>This uses Media Element player for the same example.</i>
+
+3
+00:00:08,425 --> 00:00:09,903
+<i>It's a pretty cool player with cross platform support and all.</i>

@@ -1,0 +1,1 @@
+Use a server if subtitles don't load. This error is due to CORS and subtitle files not available when the HTML file is loaded without server. 
