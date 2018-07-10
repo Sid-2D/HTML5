@@ -3,6 +3,11 @@
 <head>
 	<title>SUbtitles with Media Element</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.9/mediaelementplayer.min.css" />
+	<style type="text/css">
+		.mejs__captions-text, .mejs__captions-text * {
+		    font-size: 20px;
+		}
+	</style>
 </head>
 <body>
 	<video id="player" preload="none" controls height="300px">
@@ -19,7 +24,8 @@
 				console.log(originalNode)
 				console.log(instance)
 			},
-			audioWidth: '100%'
+			audioWidth: '100%',
+			startLanguage: 'en'
 		});
 	</script>
 </body>
