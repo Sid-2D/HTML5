@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Filesystem API</title>
+	<script type="text/javascript">
+		window.onload = () => {			
+			window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+			function onInitFs(fs) {
+				console.log(fs);
+				fs.root.getFile('log.txt', {create: true}, 
+					function(fileEntry) {
+						fileEntry.createWriter(function(fileWriter) {
+							fileWriter.onwriteend = function (e) {
+								console.log('Write Complete.');
+								readFile(fs);
+							};
+
+							fileWriter.onerror = function (e) {
+								console.log('Write failed:', e.toString());
+							};
+
+							// Create Blob
+							var blob = new Blob(['Lorem Ipsum'], {type: 'text/plain'});
+							fileWriter.write(blob);
+
+						}, errorHandler.bind(this, 'createWriter'));
+					}, errorHandler.bind(this, 'getFile'));
+			}
+
+			function readFile(fs) {
+				fs.root.getFile('log.txt', {}, 
+					function(fileEntry) {
+						fileEntry.file(function(file) {
+						var reader = new FileReader();
+						reader.readAsText(file);
+
+						reader.onloadend = function(e) {
+							console.log(this.result);
+						}
+					}, errorHandler.bind(this, 'read, fileEntry'));
+				}, errorHandler.bind(this, 'read, getFile'));			
+			}
+
+			navigator.webkitPersistentStorage.requestQuota(1024 * 1024, grantedBytes => {
+				window.requestFileSystem(PERSISTENT, grantedBytes, onInitFs, errorHandler);
+			}, errorHandler);
+
+			function errorHandler(region, e) {
+				console.log(region, 'error', e);
+			}
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
