@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Video API</title>
+	<script type="text/javascript">
+		window.onload = () => {
+			// Set the name of the hidden property and the change event for visibility
+			var hidden, visibilityChange; 
+			if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
+				hidden = "hidden"
+				visibilityChange = "visibilitychange"
+			} else if (typeof document.msHidden !== "undefined") {
+				hidden = "msHidden"
+				visibilityChange = "msvisibilitychange"
+			} else if (typeof document.webkitHidden !== "undefined") {
+				hidden = "webkitHidden"
+				visibilityChange = "webkitvisibilitychange"
+			}
+			 
+			var videoElement = document.getElementById("video")
+
+			// If the page is hidden, pause the video
+			// if the page is shown, play the video
+			function handleVisibilityChange() {
+				if (document[hidden]) {
+			    	// videoElement.play()
+					videoElement.pause()
+			  	} else {
+			    	videoElement.play()
+			  	}
+			}
+
+			// Warn if the browser doesn't support addEventListener or the Page Visibility API
+			if (typeof document.addEventListener === "undefined" || typeof document.hidden === "undefined") {
+				console.log("This demo requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.")
+			} else {
+				// Handle page visibility change   
+				document.addEventListener(visibilityChange, handleVisibilityChange, false);
+			    
+				// When the video pauses, set the title.
+				// This shows the paused
+				videoElement.addEventListener("pause", function(){
+					document.title = 'Paused';
+				}, false);
+			    
+				// When the video plays, set the title.
+				videoElement.addEventListener("play", function(){
+					document.title = 'Playing'; 
+				}, false);
+			}
+		}
+	</script>
+</head>
+<body>
+	<video id="video" width="600px" height="300px" controls>
+		<source src="vid.mp4" type="video/mp4">
+	    <p>Your browser does not support the video element.</p>
+	</video>
+	<br>
+	<br>
+	<audio controls>
+		<source src="music.mp3" type="audio/mp3">
+	    <p>Your browser does not support the audio element.</p>
+	</audio>
+</body>
+</html>
