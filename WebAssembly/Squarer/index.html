@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WebAssembly Square</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let squarer
+
+		function loadWasm(file) {
+			return fetch(file)
+						.then(response => response.arrayBuffer())
+						.then(bits => WebAssembly.compile(bits))
+						.then(module => { return new WebAssembly.Instance(module) })
+		}
+
+		loadWasm('sqaurer.wasm')
+				.then(instance => {
+					squarer = instance.exports._Z7squareri
+					console.log('Finished compiling!');
+				})
+	</script>
+</body>
+</html>
