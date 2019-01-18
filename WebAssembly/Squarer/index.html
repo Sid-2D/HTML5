@@ -11,14 +11,26 @@
 			return fetch(file)
 						.then(response => response.arrayBuffer())
 						.then(bits => WebAssembly.compile(bits))
-						.then(module => { return new WebAssembly.Instance(module) })
+						.then(module => {
+							var importObject = {
+					            env: {
+						            '__memory_base': 0,
+						            '__table_base': 0,
+						            'memory': new WebAssembly.Memory({initial: 256}),
+						            'table': new WebAssembly.Table({initial: 256, element: 'anyfunc'}),
+						            'abort': function() {},
+					            }
+						    }
+							return new WebAssembly.Instance(module, importObject) 
+						})
 		}
 
-		loadWasm('sqaurer.wasm')
+		loadWasm('./squarer.wasm')
 				.then(instance => {
-					squarer = instance.exports._Z7squareri
-					console.log('Finished compiling!');
+					squarer = instance.exports._squarer
+					console.log('Finished compiling!', squarer(81));
 				})
+
 	</script>
 </body>
 </html>

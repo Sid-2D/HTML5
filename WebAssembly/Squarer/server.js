@@ -4,7 +4,7 @@ const fs = require('fs'),
 
 express.static(__dirname)
 
-app.use(express.static('./Media'))
+app.use(express.static('./WASM'))
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')
